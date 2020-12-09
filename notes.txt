@@ -1,0 +1,30 @@
+#########################
+# To keep code clean
+#########################
+
+
+        self.panel = Panel(self)
+
+        self.text_ctrl = TextCtrl(self.panel, pos=(5, 5))
+        self.text_sizer = TextCtrl(self.panel, pos=(100, 50))
+        self.my_button = Button(self.panel, id=2, label="Click", pos=(5, 35))
+        button_exit = Button(self.panel, id=3, label="Exit", pos=(5, 100))
+        self.my_button.Bind(EVT_BUTTON, self.on_press)
+        button_exit.Bind(EVT_BUTTON, self.on_press)
+        self.Show()
+
+    def on_press(self, e):
+        but_id = e.GetId()
+        if but_id == 2:
+            print(but_id)
+            self.my_button.Destroy()
+        if but_id == 3:
+            buttonn = self.panel.FindWindowById(3)
+            print(buttonn.GetLabel())
+            buttonn.Destroy()
+
+value = self.text_ctrl.GetValue()
+if not value:
+    self.text_sizer.SetValue("Empty!")
+else:
+    self.text_sizer.SetValue(f'Typed: {value}')
