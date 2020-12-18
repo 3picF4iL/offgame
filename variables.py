@@ -11,6 +11,15 @@ buildings = [{'Name': 'Mine', 'met_req': '500', 'crist_req': '200', 'deu_req': '
              {'Name': 'Wind', 'met_req': '23', 'crist_req': '123', 'deu_req': '23'},
              {'Name': 'Tele', 'met_req': '500', 'crist_req': '200', 'deu_req': '100'},
              {'Name': 'Geo', 'met_req': '500', 'crist_req': '200', 'deu_req': '23'},
+             {'Name': 'Geo', 'met_req': '500', 'crist_req': '200', 'deu_req': '23'},
+             {'Name': 'Geo', 'met_req': '500', 'crist_req': '200', 'deu_req': '23'},
+             {'Name': 'Geo', 'met_req': '500', 'crist_req': '200', 'deu_req': '23'},
+             {'Name': 'Geo', 'met_req': '500', 'crist_req': '200', 'deu_req': '23'},
+             {'Name': 'Geo', 'met_req': '500', 'crist_req': '200', 'deu_req': '23'},
+             {'Name': 'Geo', 'met_req': '500', 'crist_req': '200', 'deu_req': '23'},
+             {'Name': 'Geo', 'met_req': '500', 'crist_req': '200', 'deu_req': '23'},
+             {'Name': 'Geo', 'met_req': '500', 'crist_req': '200', 'deu_req': '23'},
+             {'Name': 'Geo', 'met_req': '500', 'crist_req': '200', 'deu_req': '23'}
              ]
 
 ########################

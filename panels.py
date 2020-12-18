@@ -1,5 +1,6 @@
 from wx import *
 from variables import *
+import wx.lib.scrolledpanel as scrolled
 
 
 class MainPanel(Panel):
@@ -9,7 +10,8 @@ class MainPanel(Panel):
         v_sizer = BoxSizer(VERTICAL)
         v_sizer.Add(ResPanel(self), 1, EXPAND)
         v_sizer.Add(QueuePanel(self), 1, EXPAND)
-        v_sizer.Add(MenuBar(self), 1, EXPAND)
+        v_sizer.Add(DescriptionPanel(self), 1, EXPAND)
+        v_sizer.Add(MenuBar(self), 1, BI_EXPAND)
 
         self.SetSizer(v_sizer)
 
@@ -24,12 +26,20 @@ class QueuePanel(Panel):
         Panel.__init__(self, parent)
 
 
-class tab_Buildings(Panel):
+class DescriptionPanel(Panel):
     def __init__(self, parent):
         Panel.__init__(self, parent)
+
+
+class tab_Buildings(scrolled.ScrolledPanel):
+    def __init__(self, parent):
+        scrolled.ScrolledPanel.__init__(self, parent, style=HSCROLL)
+        self.SetupScrolling(self, True, False)
+
         text = StaticText(self, -1, building_message, size=(EXPAND, 30), style=ALIGN_LEFT)
         listing_h = BoxSizer(VERTICAL)
-        listing = BoxSizer(HORIZONTAL)
+        listing = WrapSizer()
+
         listing_h.Add(text)
 
         for item in buildings:
@@ -40,15 +50,16 @@ class tab_Buildings(Panel):
                                   f'Deuter: {item["deu_req"]}',
                             size=(100, 100),
                             style=ALIGN_LEFT)
-            listing.Add(button)
+            listing.Add(button,0,BOTTOM|LEFT|RIGHT|TOP, 5)
 
         listing_h.Add(listing)
         self.SetSizer(listing_h)
 
 
-class tab_Technology(Panel):
+class tab_Technology(scrolled.ScrolledPanel):
     def __init__(self, parent):
-        Panel.__init__(self, parent)
+        scrolled.ScrolledPanel.__init__(self, parent, style=HSCROLL)
+        self.SetupScrolling()
         text = StaticText(self, -1, technologies_message, size=(EXPAND, 30), style=ALIGN_LEFT)
         listing_h = BoxSizer(VERTICAL)
         listing = BoxSizer(HORIZONTAL)
