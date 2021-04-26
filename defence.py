@@ -1,1 +1,2 @@
 class Def(object):
+    pass

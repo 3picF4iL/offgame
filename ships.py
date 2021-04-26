@@ -1,1 +1,2 @@
 class Ship(object):
+    pass

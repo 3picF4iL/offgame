@@ -19,11 +19,31 @@ class MainPanel(Panel):
 class ResPanel(Panel):
     def __init__(self, parent):
         Panel.__init__(self, parent)
+        text = StaticText(self, -1, resource_message, size=(EXPAND, 30), style=ALIGN_LEFT)
+        listing_h = BoxSizer(VERTICAL)
+        listing = BoxSizer(HORIZONTAL)
+        listing_h.Add(text)
+        listing_h.Add(listing)
+        self.SetSizer(listing_h)
 
 
 class QueuePanel(Panel):
     def __init__(self, parent):
         Panel.__init__(self, parent)
+        text = StaticText(self, -1, queue_message, size=(EXPAND, 30), style=ALIGN_LEFT)
+        listing_h = BoxSizer(VERTICAL)
+        listing = BoxSizer(HORIZONTAL)
+        listing_h.Add(text)
+
+        for item in resources:
+            button = Button(self,
+                            label=f'{item["Name"]}\n\n',
+                            size=(50, 30),
+                            style=CENTER)
+            listing.Add(button)
+
+        listing_h.Add(listing)
+        self.SetSizer(listing_h)
 
 
 class DescriptionPanel(Panel):
@@ -31,15 +51,14 @@ class DescriptionPanel(Panel):
         Panel.__init__(self, parent)
 
 
-class tab_Buildings(scrolled.ScrolledPanel):
+class TabBuildings(scrolled.ScrolledPanel):
     def __init__(self, parent):
         scrolled.ScrolledPanel.__init__(self, parent, style=HSCROLL)
-        self.SetupScrolling(self, True, False)
-
+        self.SetupScrolling()
         text = StaticText(self, -1, building_message, size=(EXPAND, 30), style=ALIGN_LEFT)
         listing_h = BoxSizer(VERTICAL)
-        listing = WrapSizer()
-
+        listing = BoxSizer(HORIZONTAL)
+        #listing = WrapSizer()
         listing_h.Add(text)
 
         for item in buildings:
@@ -50,13 +69,14 @@ class tab_Buildings(scrolled.ScrolledPanel):
                                   f'Deuter: {item["deu_req"]}',
                             size=(100, 100),
                             style=ALIGN_LEFT)
-            listing.Add(button,0,BOTTOM|LEFT|RIGHT|TOP, 5)
+            #listing.Add(button, 0, BOTTOM | LEFT | RIGHT | TOP, 5)
+            listing.Add(button)
 
         listing_h.Add(listing)
         self.SetSizer(listing_h)
 
 
-class tab_Technology(scrolled.ScrolledPanel):
+class TabTechnology(scrolled.ScrolledPanel):
     def __init__(self, parent):
         scrolled.ScrolledPanel.__init__(self, parent, style=HSCROLL)
         self.SetupScrolling()
@@ -78,13 +98,14 @@ class tab_Technology(scrolled.ScrolledPanel):
         listing_h.Add(listing)
         self.SetSizer(listing_h)
 
-class tab_Ships(Panel):
+
+class TabShips(Panel):
     def __init__(self, parent):
         Panel.__init__(self, parent)
         t = StaticText(self, -1, "Ships", (20, 20))
 
 
-class tab_Defence(Panel):
+class TabDefence(Panel):
     def __init__(self, parent):
         Panel.__init__(self, parent)
         t = StaticText(self, -1, "Defence", (20, 20))
@@ -95,10 +116,10 @@ class MenuBar(Panel):
         Panel.__init__(self, parent)
         nb = Notebook(self)
 
-        tab1 = tab_Buildings(nb)
-        tab2 = tab_Technology(nb)
-        tab3 = tab_Ships(nb)
-        tab4 = tab_Defence(nb)
+        tab1 = TabBuildings(nb)
+        tab2 = TabTechnology(nb)
+        tab3 = TabShips(nb)
+        tab4 = TabDefence(nb)
 
         nb.AddPage(tab1, "Buildings", )
         nb.AddPage(tab2, "Technology")
